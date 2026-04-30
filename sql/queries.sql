@@ -86,3 +86,29 @@ GROUP BY sub_category
 ORDER BY revenue DESC;
 
 // Discount Impact on Profit
+SELECT discount,
+ROUND(AVG(profit),2) AS avg_profit
+FROM sales
+GROUP BY discount
+ORDER BY discount;
+
+// Segment Wise Profit 
+SELECT segment,
+ROUND(SUM(profit),2) AS total_profit
+FROM sales
+GROUP BY segment
+ORDER BY total_profit DESC;
+
+// Average Sales Per Category
+SELECT category,
+ROUND(AVG(sales),2) AS avg_sales
+FROM sales
+GROUP BY category;
+
+// Top States By Revenue
+SELECT state,
+ROUND(SUM(sales),2) AS revenue
+FROM sales
+GROUP BY state
+ORDER BY revenue DESC
+LIMIT 10;
