@@ -20,43 +20,69 @@ profit DECIMAL(10,2)
 
 
 
-//to the the dataset is imported successfully
+// To the the dataset is imported successfully
 
-//first 10 row of dataset 
+// First 10 row of dataset 
 
 USE ecommerce_dashboard;
 SELECT * FROM sales LIMIT 10;
 
-//counts total rows
+// Counts total rows
 
 SELECT COUNT(*) AS total_rows FROM sales;
 
-//total sales 
+// Total sales 
 SELECT ROUND(SUM(sales),2) AS total_sales
 FROM sales;
 
-//total profit 
+// Total profit 
 SELECT ROUND(SUM(profit),2) AS total_profit
 FROM sales;
 
-// sales by category 
+// Sales by category 
 SELECT category,
 ROUND(SUM(sales),2) AS revenue
 FROM sales
 GROUP BY category
 ORDER BY revenue DESC;
 
-// profit  by region 
+// Profit  by region 
 SELECT region,
 ROUND(SUM(profit),2) AS total_profit
 FROM sales
 GROUP BY region
 ORDER BY total_profit DESC;
 
-// top 10 cities by sales 
+// Top 10 cities by sales 
 SELECT city,
 ROUND(SUM(sales),2) AS revenue
 FROM sales
 GROUP BY city
 ORDER BY revenue DESC
 LIMIT 10;
+
+// Top 5 Most Profitable Cities
+SELECT city,
+ROUND(SUM(profit),2) AS total_profit
+FROM sales
+GROUP BY city
+ORDER BY total_profit DESC
+LIMIT 5;
+
+// Bottom 5 Loss-Making Cities
+SELECT city,
+ROUND(SUM(profit),2) AS total_profit
+FROM sales
+GROUP BY city
+ORDER BY total_profit ASC
+LIMIT 5;
+
+
+// Highest Sales Sub-Categories
+SELECT sub_category,
+ROUND(SUM(sales),2) AS revenue
+FROM sales
+GROUP BY sub_category
+ORDER BY revenue DESC;
+
+// Discount Impact on Profit
