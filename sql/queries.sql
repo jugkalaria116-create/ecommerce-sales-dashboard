@@ -111,4 +111,4 @@ ROUND(SUM(sales),2) AS revenue
 FROM sales
 GROUP BY state
 ORDER BY revenue DESC
-LIMIT 10;
+LIMIT 10;   
